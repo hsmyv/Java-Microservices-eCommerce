@@ -1,4 +1,4 @@
-package com.hstudio.ecom;
+package com.hstudio.ecom.model;
 
 
 import jakarta.persistence.Entity;
@@ -10,13 +10,18 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@Entity
-public class User {
+@Entity(name = "addresses")
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String street;
+    private String city;
+    private String state;
+    private String country;
+    private String zipcode;
+
+
 
 
 }

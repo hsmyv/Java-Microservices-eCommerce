@@ -1,5 +1,6 @@
-package com.hstudio.ecom;
+package com.hstudio.ecom.repository;
 
+import com.hstudio.ecom.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
