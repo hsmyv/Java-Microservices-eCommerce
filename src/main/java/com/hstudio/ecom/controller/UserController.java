@@ -2,7 +2,6 @@ package com.hstudio.ecom.controller;
 
 import com.hstudio.ecom.dto.UserRequest;
 import com.hstudio.ecom.dto.UserResponse;
-import com.hstudio.ecom.model.User;
 import com.hstudio.ecom.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,6 @@ public class UserController {
 
 
     @GetMapping
-//    @RequestMapping(value = "/api/users", method = RequestMethod.GET)
     public ResponseEntity<List<UserResponse>> getAllUsers(){
         return new ResponseEntity<>(userService.fetchAllUsers(), HttpStatus.OK);
     }
@@ -34,15 +32,15 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody UserRequest userRequest){
-        userService.addUser(user);
+        userService.addUser(userRequest);
         return ResponseEntity.ok("User added successfully");
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateUser(
             @PathVariable Long id,
-            @RequestBody User updatedUser){
-        boolean updated = userService.updateUser(id, updatedUser);
+            @RequestBody UserRequest updateUserRequest){
+        boolean updated = userService.updateUser(id, updateUserRequest);
         if(updated)
             return ResponseEntity.ok("User updated successfully");
         return  ResponseEntity.notFound().build();
